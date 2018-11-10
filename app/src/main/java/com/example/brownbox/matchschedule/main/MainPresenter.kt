@@ -2,7 +2,7 @@ package com.example.brownbox.matchschedule.main
 
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
-import com.example.brownbox.matchschedule.model.LeagueItemResponses
+import com.example.brownbox.matchschedule.model.LeagueItemResponse
 import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -16,7 +16,7 @@ class MainPresenter(private val view: MainView,
         doAsync {
             val data = gson.fromJson(apiRepository
                 .doRequest(TheSportDBApi.getPastLeague(league)),
-                LeagueItemResponses::class.java
+                LeagueItemResponse::class.java
             )
 
             uiThread {
@@ -31,7 +31,7 @@ class MainPresenter(private val view: MainView,
         doAsync {
             val data = gson.fromJson(apiRepository
                 .doRequest(TheSportDBApi.getNextLeague(league)),
-                LeagueItemResponses::class.java
+                LeagueItemResponse::class.java
             )
 
             uiThread {
@@ -41,18 +41,5 @@ class MainPresenter(private val view: MainView,
         }
     }
 
-    fun getDetailEvent(eventId: String?) {
-        view.showLoading()
-        doAsync {
-            val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getLeagueDetail(eventId)),
-                LeagueItemResponses::class.java
-            )
 
-            uiThread {
-                view.hideLoading()
-                view.showEventList(data.events)
-            }
-        }
-    }
 }

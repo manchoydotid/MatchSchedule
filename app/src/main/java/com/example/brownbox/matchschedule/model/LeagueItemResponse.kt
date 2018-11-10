@@ -1,5 +1,5 @@
 package com.example.brownbox.matchschedule.model
 
-data class LeagueItemResponses(
+data class LeagueItemResponse(
     val events: List<LeagueItem>
 )

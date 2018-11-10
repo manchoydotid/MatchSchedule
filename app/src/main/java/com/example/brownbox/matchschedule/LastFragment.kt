@@ -16,19 +16,11 @@ import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class LastFragment : Fragment(), MainView {
 
     private var events: MutableList<LeagueItem> = mutableListOf()
@@ -39,9 +31,10 @@ class LastFragment : Fragment(), MainView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = MainAdapter(events)
+        adapter = MainAdapter(events, requireContext())
         rv_fragment.layoutManager = LinearLayoutManager(requireContext())
         rv_fragment.adapter = adapter
+
         val request = ApiRepository()
         val gson = Gson()
         presenter = MainPresenter(this, request, gson)

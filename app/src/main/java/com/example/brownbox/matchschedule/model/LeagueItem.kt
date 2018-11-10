@@ -5,15 +5,15 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class LeagueItem(
-    val idEvent: String,
-    val dateEvent: String,
+    var idEvent: String? = null,
+    var dateEvent: String? = null,
 
-    val strHomeTeam: String,
-    val idHomeTeam: String,
-    val intHomeScore: String,
+    var strHomeTeam: String? = null,
+    var idHomeTeam: String? = null,
+    var intHomeScore: String? = null,
 
-    val strAwayTeam: String,
-    val idAwayTeam: String,
-    val intAwayScore: String
+    var strAwayTeam: String? = null,
+    var idAwayTeam: String? = null,
+    var intAwayScore: String? = null
 
 ):Parcelable

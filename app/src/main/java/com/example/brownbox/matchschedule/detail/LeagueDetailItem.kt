@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule.model
+package com.example.brownbox.matchschedule.detail
 
 data class LeagueDetailItem(
     val idEvent: String,
@@ -9,22 +9,22 @@ data class LeagueDetailItem(
     val intHomeScore: String,
     val intHomeShots: String,
     val strHomeGoalDetails: String,
-    val strHomeLineupGoalKeeper: String,
+    val strHomeLineupGoalkeeper: String,
     val strHomeLineupDefense: String,
     val strHomeLineupMidfield: String,
     val strHomeLineupForward: String,
-    val strHomeLineupSubtitutes: String,
+    val strHomeLineupSubstitutes: String,
 
     val strAwayTeam: String,
     val idAwayTeam: String,
     val intAwayScore: String,
     val intAwayShots: String,
     val strAwayGoalDetails: String,
-    val strAwayLineupGoalKeeper: String,
+    val strAwayLineupGoalkeeper: String,
     val strAwayLineupDefense: String,
     val strAwayLineupMidfield: String,
     val strAwayLineupForward: String,
-    val strAwayLineupSubtitutes: String
+    val strAwayLineupSubstitutes: String
 
 
 )

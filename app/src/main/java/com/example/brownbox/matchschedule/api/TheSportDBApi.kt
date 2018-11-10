@@ -23,6 +23,6 @@ object TheSportDBApi {
 
     fun getTeamDetail(teamId: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
-                "lookupteam.php?id"+ teamId
+                "/lookupteam.php?id="+ teamId
     }
 }
