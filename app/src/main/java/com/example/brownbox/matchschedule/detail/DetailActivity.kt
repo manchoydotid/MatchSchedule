@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailActivity : AppCompatActivity(), LeagueDetailView,
     TeamDetailView {
@@ -56,7 +57,7 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView,
 
     override fun showLeagueDetailList(data: List<LeagueDetailItem>?) {
 
-        val date = SimpleDateFormat("EEE, d MMM yyyy")
+        val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
             .format(SimpleDateFormat("yyyy-MM-dd")
                 .parse(data!![0].dateEvent))
 
@@ -92,8 +93,8 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView,
     }
 
     override fun showTeamDetailList(dataA: List<TeamDetailItem>, dataB: List<TeamDetailItem>) {
-        Picasso.get().load(dataA.get(0).strTeamBadge).into(detail_home_logo)
-        Picasso.get().load(dataB.get(0).strTeamBadge).into(detail_away_logo)
+        Picasso.get().load(dataA[0].strTeamBadge).into(detail_home_logo)
+        Picasso.get().load(dataB[0].strTeamBadge).into(detail_away_logo)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

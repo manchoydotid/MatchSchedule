@@ -14,5 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         viewpager_main.adapter = PagerAdapter(supportFragmentManager)
         tabs_main.setupWithViewPager(viewpager_main)
+
+        supportActionBar?.elevation = 0F
     }
 }

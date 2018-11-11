@@ -26,7 +26,7 @@ class LastFragment : Fragment(), MainView {
     private var events: MutableList<LeagueItem> = mutableListOf()
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
-    val legaueId = "4328"
+    private val legaueId = "4328"
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
