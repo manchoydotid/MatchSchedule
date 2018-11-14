@@ -1,30 +1,33 @@
 package com.example.brownbox.matchschedule.detail
 
+
 data class LeagueDetailItem(
-    val idEvent: String,
-    val dateEvent: String,
+    var idEvent: String? = null ,
+    var dateEvent: String? = null,
 
-    val strHomeTeam: String,
-    val idHomeTeam: String,
-    val intHomeScore: String,
-    val intHomeShots: String,
-    val strHomeGoalDetails: String,
-    val strHomeLineupGoalkeeper: String,
-    val strHomeLineupDefense: String,
-    val strHomeLineupMidfield: String,
-    val strHomeLineupForward: String,
-    val strHomeLineupSubstitutes: String,
+    var strHomeTeam: String? = null,
+    var idHomeTeam: String? = null,
+    var intHomeScore: String? = null,
+    var strHomeFormation: String? = null,
+    var intHomeShots: String? = null,
+    var strHomeGoalDetails: String? = null,
+    var strHomeLineupGoalkeeper: String? = null,
+    var strHomeLineupDefense: String? = null,
+    var strHomeLineupMidfield: String? = null,
+    var strHomeLineupForward: String? = null,
+    var strHomeLineupSubstitutes: String? = null,
 
-    val strAwayTeam: String,
-    val idAwayTeam: String,
-    val intAwayScore: String,
-    val intAwayShots: String,
-    val strAwayGoalDetails: String,
-    val strAwayLineupGoalkeeper: String,
-    val strAwayLineupDefense: String,
-    val strAwayLineupMidfield: String,
-    val strAwayLineupForward: String,
-    val strAwayLineupSubstitutes: String
+    var strAwayTeam: String? = null,
+    var idAwayTeam: String? = null,
+    var intAwayScore: String? = null,
+    var strAwayFormation: String? = null,
+    var intAwayShots: String? = null,
+    var strAwayGoalDetails: String? = null,
+    var strAwayLineupGoalkeeper: String? = null,
+    var strAwayLineupDefense: String? = null,
+    var strAwayLineupMidfield: String? = null,
+    var strAwayLineupForward: String? = null,
+    var strAwayLineupSubstitutes: String?
 
 
 )

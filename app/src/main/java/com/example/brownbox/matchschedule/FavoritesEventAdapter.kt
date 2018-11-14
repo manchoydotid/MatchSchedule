@@ -1,8 +1,8 @@
-package com.example.brownbox.matchschedule.main
+package com.example.brownbox.matchschedule
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.v4.content.ContextCompat
+import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.Gravity
@@ -11,60 +11,51 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.brownbox.matchschedule.detail.DetailActivity
-import com.example.brownbox.matchschedule.R
-import com.example.brownbox.matchschedule.model.LeagueItem
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainAdapter (private val context: Context, private val events: List<LeagueItem>, private val listener: (LeagueItem) -> Unit)
-    :RecyclerView.Adapter<MainAdapter.LeagueItemViewHolder>(){
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): LeagueItemViewHolder {
-        return LeagueItemViewHolder(
-            LeagueUI().createView(
-                AnkoContext.create(p0.context, p0)
-            )
-        )
+class FavoritesEventAdapter(private val context: Context, private val favorites: List<Favorites>, private val listener: (Favorites) -> Unit)
+    : RecyclerView.Adapter<FavoritesEventAdapter.FavoritesViewHolder>(){
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): FavoritesViewHolder {
+        return FavoritesViewHolder(FavoritesUI().createView(AnkoContext.create(p0.context, p0)))
     }
 
-    override fun getItemCount(): Int = events.size
+    override fun getItemCount(): Int = favorites.size
 
-
-    override fun onBindViewHolder(p0: MainAdapter.LeagueItemViewHolder, p1: Int) {
-        p0.bindItem(events[p1], listener)
+    override fun onBindViewHolder(p0: FavoritesViewHolder, p1: Int) {
+        p0.bindItem(favorites[p1], listener)
     }
 
-    inner class LeagueItemViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-
+    inner class FavoritesViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val dateEvent: TextView = itemView.find(R.id.date_event)
         private val homeTeam: TextView = itemView.find(R.id.home_team)
         private val homeScore: TextView = itemView.find(R.id.home_score)
         private val awayTeam: TextView = itemView.find(R.id.away_team)
         private val awayScore: TextView = itemView.find(R.id.away_score)
 
-        fun bindItem(events: LeagueItem, listener: (LeagueItem) -> Unit){
-
+        fun bindItem(favorites: Favorites, listener: (Favorites) -> Unit){
             val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
-                .format(SimpleDateFormat("yyyy-MM-dd")
-                    .parse(events.dateEvent))
+                .format(
+                    SimpleDateFormat("yyyy-MM-dd")
+                        .parse(favorites.dateEvent))
 
             dateEvent.text = date
-            homeTeam.text = events.strHomeTeam
-            homeScore.text = events.intHomeScore
-            awayTeam.text = events.strAwayTeam
-            awayScore.text = events.intAwayScore
+            homeTeam.text = favorites.strHomeTeam
+            homeScore.text = favorites.intHomeScore
+            awayTeam.text = favorites.strAwayTeam
+            awayScore.text = favorites.intAwayScore
 
             itemView.setOnClickListener {
-                listener(events)
+                listener(favorites)
             }
-
         }
-
     }
-
 }
 
-class LeagueUI: AnkoComponent<ViewGroup>{
+
+class FavoritesUI: AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
             linearLayout {
@@ -74,7 +65,7 @@ class LeagueUI: AnkoComponent<ViewGroup>{
 
                 textView {
                     id = R.id.date_event
-                    textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
+                    textColor = resources.getColor(R.color.colorPrimary)
                 }.lparams {
                     width = wrapContent
                     height = wrapContent
@@ -83,7 +74,7 @@ class LeagueUI: AnkoComponent<ViewGroup>{
                 }
 
                 linearLayout {
-                    lparams (width = matchParent, height = wrapContent)
+                    lparams(width = matchParent, height = wrapContent)
                     orientation = LinearLayout.HORIZONTAL
                     gravity = Gravity.CENTER_HORIZONTAL
 
@@ -93,7 +84,9 @@ class LeagueUI: AnkoComponent<ViewGroup>{
                         padding = dip(8)
                         singleLine = true
                         ellipsize = TextUtils.TruncateAt.END
-                        textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                            textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                        }
                     }.lparams {
                         width = matchParent
                         height = wrapContent
@@ -109,20 +102,20 @@ class LeagueUI: AnkoComponent<ViewGroup>{
                             textSize = 20f
                             setTypeface(null, Typeface.BOLD)
                         }.lparams {
-                        width = wrapContent
-                        height = wrapContent
+                            width = wrapContent
+                            height = wrapContent
                         }
 
                         textView {
-                            text = "VS"
+                            text = "vs"
                         }.lparams {
-                        width = wrapContent
-                        height = wrapContent
+                            width = wrapContent
+                            height = wrapContent
                         }
 
                         textView {
                             id = R.id.away_score
-                            padding= dip(8)
+                            padding = dip(8)
                             textSize = 20f
                             setTypeface(null, Typeface.BOLD)
                         }.lparams {
@@ -148,5 +141,3 @@ class LeagueUI: AnkoComponent<ViewGroup>{
         }
     }
 }
-
-

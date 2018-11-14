@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import com.example.brownbox.matchschedule.api.ApiRepository
+import com.example.brownbox.matchschedule.detail.DetailActivity
 import com.example.brownbox.matchschedule.main.MainAdapter
 import com.example.brownbox.matchschedule.main.MainPresenter
 import com.example.brownbox.matchschedule.main.MainView
@@ -16,7 +18,9 @@ import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -30,8 +34,13 @@ class LastFragment : Fragment(), MainView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        adapter = MainAdapter(events, requireContext())
+//        adapter = MainAdapter(events, getrequiredContext)
+        adapter = MainAdapter(ctx, events){
+            startActivity<DetailActivity>(
+                "idEvent" to "${it.idEvent}",
+                "idHome" to "${it.idHomeTeam}",
+                "idAway" to "${it.idAwayTeam}")
+        }
         rv_fragment.layoutManager = LinearLayoutManager(requireContext())
         rv_fragment.adapter = adapter
 
@@ -39,7 +48,6 @@ class LastFragment : Fragment(), MainView {
         val gson = Gson()
         presenter = MainPresenter(this, request, gson)
         presenter.getPastLeagueList(legaueId)
-
         swipeRefresh.onRefresh {
             presenter.getPastLeagueList("4328")
         }

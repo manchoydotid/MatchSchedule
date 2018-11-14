@@ -21,6 +21,7 @@
                                 android:layout_height="wrap_content">
 
                         </android.support.v7.widget.RecyclerView>
+
                         <ProgressBar
                                 android:id="@+id/progressBar"
                                 style="?android:attr/progressBarStyle"
@@ -29,7 +30,6 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true"
                         />
-
 
                 </RelativeLayout>
 
