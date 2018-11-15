@@ -2,6 +2,7 @@ package com.example.brownbox.matchschedule.detail
 
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
+import com.example.brownbox.matchschedule.util.CoroutineContextProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,12 +12,13 @@ import org.jetbrains.anko.uiThread
 
 class TeamPresenter(private val view: TeamDetailView,
                     private val apiRepository: ApiRepository,
-                    private val gson: Gson
-) {
+                    private val gson: Gson,private val context:
+                    CoroutineContextProvider = CoroutineContextProvider())
+{
     fun getDetailTeam(teamIdA: String?, teamIdB: String?) {
         view.showLoading()
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             val dataA = gson.fromJson(
                 apiRepository
                     .doRequest(TheSportDBApi.getTeamDetail(teamIdA)).await(),
@@ -35,3 +37,15 @@ class TeamPresenter(private val view: TeamDetailView,
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
