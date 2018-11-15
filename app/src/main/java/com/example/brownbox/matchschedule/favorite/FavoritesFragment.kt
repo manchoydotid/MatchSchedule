@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule
+package com.example.brownbox.matchschedule.favorite
 
 
 import android.os.Bundle
@@ -7,11 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.brownbox.matchschedule.R
+import com.example.brownbox.matchschedule.database
 import com.example.brownbox.matchschedule.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
@@ -25,11 +26,12 @@ class FavoritesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = FavoritesEventAdapter(ctx, favorites){
+        adapter = FavoritesEventAdapter(ctx, favorites) {
             startActivity<DetailActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
-                "idAway" to "${it.idAwayTeam}")
+                "idAway" to "${it.idAwayTeam}"
+            )
         }
 
         rv_fav_fragment.adapter = adapter

@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule
+package com.example.brownbox.matchschedule.favorite
 
 import android.content.Context
 import android.graphics.Typeface
@@ -10,9 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.brownbox.matchschedule.detail.DetailActivity
+import com.example.brownbox.matchschedule.R
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.text.SimpleDateFormat
 import java.util.*
 

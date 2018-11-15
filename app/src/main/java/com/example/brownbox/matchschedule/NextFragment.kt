@@ -17,7 +17,6 @@ import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
@@ -33,7 +32,6 @@ class NextFragment : Fragment(), MainView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        adapter = MainAdapter(events,requireContext())
         adapter = MainAdapter(ctx, events){
             startActivity<DetailActivity>(
                 "idEvent" to "${it.idEvent}",
@@ -62,11 +60,11 @@ class NextFragment : Fragment(), MainView {
     }
 
     override fun showLoading() {
-        progressBar.visible()
+        pBar.visible()
     }
 
     override fun hideLoading() {
-        progressBar.invisible()
+        pBar.invisible()
     }
 
     override fun showEventList(data: List<LeagueItem>) {

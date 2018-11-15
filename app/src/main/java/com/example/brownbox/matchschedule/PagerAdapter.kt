@@ -3,6 +3,7 @@ package com.example.brownbox.matchschedule
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.example.brownbox.matchschedule.favorite.FavoritesFragment
 
 class PagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
 
