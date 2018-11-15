@@ -3,6 +3,9 @@ package com.example.brownbox.matchschedule.detail
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
 import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -13,22 +16,21 @@ class TeamPresenter(private val view: TeamDetailView,
     fun getDetailTeam(teamIdA: String?, teamIdB: String?) {
         view.showLoading()
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             val dataA = gson.fromJson(
                 apiRepository
-                    .doRequest(TheSportDBApi.getTeamDetail(teamIdA)),
+                    .doRequest(TheSportDBApi.getTeamDetail(teamIdA)).await(),
                 TeamDetailItemResponse::class.java
             )
             val dataB = gson.fromJson(
                 apiRepository
-                    .doRequest(TheSportDBApi.getTeamDetail(teamIdB)),
+                    .doRequest(TheSportDBApi.getTeamDetail(teamIdB)).await(),
                 TeamDetailItemResponse::class.java
             )
 
-            uiThread {
-                view.hideLoading()
+
                 view.showTeamDetailList(dataA.teams, dataB.teams)
-            }
+                view.hideLoading()
         }
 
     }
