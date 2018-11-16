@@ -4,6 +4,7 @@ package com.example.brownbox.matchschedule
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ import org.jetbrains.anko.support.v4.startActivity
 
 class NextFragment : Fragment(), MainView {
 
+    private lateinit var listEvent: RecyclerView
     private var events: MutableList<LeagueItem> = mutableListOf()
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
@@ -38,8 +40,10 @@ class NextFragment : Fragment(), MainView {
                 "idHome" to "${it.idHomeTeam}",
                 "idAway" to "${it.idAwayTeam}")
         }
-        rv_fragment.layoutManager = LinearLayoutManager(requireContext())
-        rv_fragment.adapter = adapter
+
+        listEvent = view!!.findViewById(R.id.rv_fragment)
+        listEvent.layoutManager = LinearLayoutManager(requireContext())
+        listEvent.adapter = adapter
 
         val request = ApiRepository()
         val gson = Gson()
