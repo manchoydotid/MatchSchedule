@@ -14,6 +14,7 @@ import com.example.brownbox.matchschedule.detail.DetailActivity
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.model.LeagueItem
 import org.jetbrains.anko.*
+import org.jetbrains.anko.cardview.v7.cardView
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -64,89 +65,99 @@ class MainAdapter (private val context: Context, private val events: List<League
 
 }
 
-class LeagueUI: AnkoComponent<ViewGroup>{
+class LeagueUI: AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
-            linearLayout {
-                lparams(width = matchParent, height = wrapContent)
-                padding = dip(16)
-                orientation = LinearLayout.VERTICAL
 
-                textView {
-                    id = R.id.date_event
-                    textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
-                }.lparams {
-                    width = wrapContent
-                    height = wrapContent
-                    gravity = Gravity.CENTER
-
+            cardView {
+                id = R.id.match_cardview
+                lparams(width = matchParent, height = wrapContent) {
+                    topMargin = dip(10)
+                    rightMargin = dip(10)
+                    leftMargin = dip(10)
                 }
 
+
                 linearLayout {
-                    lparams (width = matchParent, height = wrapContent)
-                    orientation = LinearLayout.HORIZONTAL
-                    gravity = Gravity.CENTER_HORIZONTAL
+                    lparams(width = matchParent, height = wrapContent)
+                    padding = dip(16)
+                    orientation = LinearLayout.VERTICAL
 
                     textView {
-                        id = R.id.home_team
-                        textSize = 18f
-                        padding = dip(8)
-                        singleLine = true
-                        ellipsize = TextUtils.TruncateAt.END
-                        textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                        id = R.id.date_event
+                        textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
                     }.lparams {
-                        width = matchParent
+                        width = wrapContent
                         height = wrapContent
-                        weight = 1f
+                        gravity = Gravity.CENTER
+
                     }
 
                     linearLayout {
-                        gravity = Gravity.CENTER_VERTICAL
+                        lparams(width = matchParent, height = wrapContent)
+                        orientation = LinearLayout.HORIZONTAL
+                        gravity = Gravity.CENTER_HORIZONTAL
 
                         textView {
-                            id = R.id.home_score
+                            id = R.id.home_team
+                            textSize = 18f
                             padding = dip(8)
-                            textSize = 20f
-                            setTypeface(null, Typeface.BOLD)
+                            singleLine = true
+                            ellipsize = TextUtils.TruncateAt.END
+                            textAlignment = View.TEXT_ALIGNMENT_TEXT_END
                         }.lparams {
-                        width = wrapContent
-                        height = wrapContent
-                        }
-
-                        textView {
-                            text = "VS"
-                        }.lparams {
-                        width = wrapContent
-                        height = wrapContent
-                        }
-
-                        textView {
-                            id = R.id.away_score
-                            padding= dip(8)
-                            textSize = 20f
-                            setTypeface(null, Typeface.BOLD)
-                        }.lparams {
-                            width = wrapContent
+                            width = matchParent
                             height = wrapContent
+                            weight = 1f
                         }
-                    }
 
-                    textView {
-                        id = R.id.away_team
-                        textSize = 18f
-                        padding = dip(8)
-                        singleLine = true
-                        ellipsize = TextUtils.TruncateAt.END
-                    }.lparams {
-                        width = matchParent
-                        height = wrapContent
-                        weight = 1f
+                        linearLayout {
+                            gravity = Gravity.CENTER_VERTICAL
 
+                            textView {
+                                id = R.id.home_score
+                                padding = dip(8)
+                                textSize = 20f
+                                setTypeface(null, Typeface.BOLD)
+                            }.lparams {
+                                width = wrapContent
+                                height = wrapContent
+                            }
+
+                            textView {
+                                text = "VS"
+                            }.lparams {
+                                width = wrapContent
+                                height = wrapContent
+                            }
+
+                            textView {
+                                id = R.id.away_score
+                                padding = dip(8)
+                                textSize = 20f
+                                setTypeface(null, Typeface.BOLD)
+                            }.lparams {
+                                width = wrapContent
+                                height = wrapContent
+                            }
+                        }
+
+                        textView {
+                            id = R.id.away_team
+                            textSize = 18f
+                            padding = dip(8)
+                            singleLine = true
+                            ellipsize = TextUtils.TruncateAt.END
+                        }.lparams {
+                            width = matchParent
+                            height = wrapContent
+                            weight = 1f
+
+                        }
                     }
                 }
             }
         }
     }
+
 }
-
-

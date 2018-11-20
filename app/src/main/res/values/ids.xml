@@ -5,4 +5,6 @@
     <item name="home_score" type="id"/>
     <item name="home_team" type="id"/>
     <item name="date_event" type="id"/>
+    <item name="cardview_main" type="id"/>
+    <item name="match_cardview" type="id"/>
 </resources>

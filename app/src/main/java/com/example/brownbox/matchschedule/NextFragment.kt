@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.detail.DetailActivity
 import com.example.brownbox.matchschedule.main.MainAdapter
@@ -29,12 +31,16 @@ class NextFragment : Fragment(), MainView {
     private var events: MutableList<LeagueItem> = mutableListOf()
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
-    private val legaueId = "4328"
+    private lateinit var leagueName: String
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = MainAdapter(ctx, events){
+        val spinnerItems = resources.getStringArray(R.array.league)
+        val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+        match_spinner.adapter = spinnerAdapter
+
+        adapter = MainAdapter(requireContext(), events){
             startActivity<DetailActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
@@ -48,10 +54,24 @@ class NextFragment : Fragment(), MainView {
         val request = ApiRepository()
         val gson = Gson()
         presenter = MainPresenter(this, request, gson)
-        presenter.getNextLeagueList(legaueId)
-        swipeRefresh.onRefresh {
-            presenter.getNextLeagueList("4328")
+        match_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                leagueName = match_spinner.selectedItem.toString()
+                when(leagueName){
+                    "English Premier League" -> presenter.getNextLeagueList("4328")
+                    "German Bundesliga" -> presenter.getNextLeagueList("4331")
+                    "Italian Serie A" -> presenter.getNextLeagueList("4332")
+                    "French Ligue 1" -> presenter.getNextLeagueList("4334")
+                    "Spanish La Liga" -> presenter.getNextLeagueList("4335")
+                    "Netherlands Eredivisie" -> presenter.getNextLeagueList("4337")
+                    else -> presenter.getPastLeagueList("4328")
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+
     }
 
 

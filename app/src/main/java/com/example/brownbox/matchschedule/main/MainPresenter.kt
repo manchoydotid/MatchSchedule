@@ -17,12 +17,12 @@ class MainPresenter(private val view: MainView,
                     private val gson: Gson, private val context:
                     CoroutineContextProvider = CoroutineContextProvider())
 {
-    fun getPastLeagueList(league: String?) {
+    fun getPastLeagueList(leagueName: String?) {
         view.showLoading()
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getPastLeague(league)).await(),
+                .doRequest(TheSportDBApi.getPastLeague(leagueName)).await(),
                 LeagueItemResponse::class.java
             )
 
@@ -31,12 +31,12 @@ class MainPresenter(private val view: MainView,
         }
     }
 
-    fun getNextLeagueList(league: String?) {
+    fun getNextLeagueList(leagueName: String?) {
         view.showLoading()
 
         GlobalScope.launch(context.main) {
             val data = gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getNextLeague(league)).await(),
+                .doRequest(TheSportDBApi.getNextLeague(leagueName)).await(),
                 LeagueItemResponse::class.java
             )
 
