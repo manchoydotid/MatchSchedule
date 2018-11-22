@@ -7,4 +7,5 @@
     <item name="date_event" type="id"/>
     <item name="cardview_main" type="id"/>
     <item name="match_cardview" type="id"/>
+    <item name="time_event" type="id"/>
 </resources>

@@ -2,6 +2,7 @@ package com.example.brownbox.matchschedule.main
 
 import android.content.Context
 import android.graphics.Typeface
+import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
@@ -38,6 +39,7 @@ class MainAdapter (private val context: Context, private val events: List<League
     inner class LeagueItemViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
         private val dateEvent: TextView = itemView.find(R.id.date_event)
+        private val timeEvent: TextView = itemView.find(R.id.time_event)
         private val homeTeam: TextView = itemView.find(R.id.home_team)
         private val homeScore: TextView = itemView.find(R.id.home_score)
         private val awayTeam: TextView = itemView.find(R.id.away_team)
@@ -45,11 +47,18 @@ class MainAdapter (private val context: Context, private val events: List<League
 
         fun bindItem(events: LeagueItem, listener: (LeagueItem) -> Unit){
 
-            val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
-                .format(SimpleDateFormat("yyyy-MM-dd")
-                    .parse(events.dateEvent))
+//            val date = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
+//                .format(SimpleDateFormat("yyyy-MM-dd")
+//                    .parse(events.dateEvent))
 
-            dateEvent.text = date
+//            <!--TODO Date Time Belum sesuai -->
+            val date = events.dateEvent.toString()
+            val time = events.strTime.toString()
+
+            val dateTime = toGMTFormat(date, time)
+
+            dateEvent.text = dateTime
+            timeEvent.text = "$date $time"
             homeTeam.text = events.strHomeTeam
             homeScore.text = events.intHomeScore
             awayTeam.text = events.strAwayTeam
@@ -63,6 +72,13 @@ class MainAdapter (private val context: Context, private val events: List<League
 
     }
 
+}
+
+fun toGMTFormat(date: String, time: String): String {
+    val formatter = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    formatter.timeZone = TimeZone.getTimeZone("UTC")
+    val dateTime = "$date $time"
+    return formatter.parse(dateTime).toString()
 }
 
 class LeagueUI: AnkoComponent<ViewGroup> {
@@ -93,6 +109,16 @@ class LeagueUI: AnkoComponent<ViewGroup> {
 
                     }
 
+                    textView {
+                        id = R.id.time_event
+                        textColor = ContextCompat.getColor(ctx, R.color.colorPrimary)
+                    }.lparams {
+                        width = wrapContent
+                        height = wrapContent
+                        gravity = Gravity.CENTER
+
+                    }
+
                     linearLayout {
                         lparams(width = matchParent, height = wrapContent)
                         orientation = LinearLayout.HORIZONTAL
@@ -104,7 +130,9 @@ class LeagueUI: AnkoComponent<ViewGroup> {
                             padding = dip(8)
                             singleLine = true
                             ellipsize = TextUtils.TruncateAt.END
-                            textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                                textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                            }
                         }.lparams {
                             width = matchParent
                             height = wrapContent

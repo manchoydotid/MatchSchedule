@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".detail.DetailActivity">
         </activity>
+        <activity android:name=".Home">
+        </activity>
     </application>
 
 </manifest>
