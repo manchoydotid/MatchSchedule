@@ -1,7 +1,10 @@
 package com.example.brownbox.matchschedule.detail
 
 data class TeamDetailItem(
-    val strTeam: String,
-    val idTeam: String,
-    val strTeamBadge: String
+    val idTeam: String? = null,
+    val strTeam: String? = null,
+    val intFormedYear: String? = null,
+    val strStadium: String? = null,
+    val strDescription: String? = null,
+    val strTeamBadge: String? = null
 )

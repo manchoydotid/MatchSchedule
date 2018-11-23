@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.brownbox.matchschedule.api.ApiRepository
-import com.example.brownbox.matchschedule.detail.DetailActivity
+import com.example.brownbox.matchschedule.detail.DetailMatchActivity
 import com.example.brownbox.matchschedule.main.MainAdapter
 import com.example.brownbox.matchschedule.main.MainPresenter
 import com.example.brownbox.matchschedule.main.MainView
@@ -20,8 +20,6 @@ import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 
@@ -41,7 +39,7 @@ class NextFragment : Fragment(), MainView {
         match_spinner.adapter = spinnerAdapter
 
         adapter = MainAdapter(requireContext(), events){
-            startActivity<DetailActivity>(
+            startActivity<DetailMatchActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
                 "idAway" to "${it.idAwayTeam}")

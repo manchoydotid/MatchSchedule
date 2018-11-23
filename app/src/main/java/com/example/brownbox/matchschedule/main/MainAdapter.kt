@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.brownbox.matchschedule.detail.DetailActivity
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.model.LeagueItem
 import org.jetbrains.anko.*

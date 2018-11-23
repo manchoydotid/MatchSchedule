@@ -18,9 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".detail.DetailActivity">
+        <activity android:name=".detail.DetailMatchActivity">
         </activity>
         <activity android:name=".Home">
+        </activity>
+        <activity android:name=".teams.detail.TeamDetailActivity">
         </activity>
     </application>
 

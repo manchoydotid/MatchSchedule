@@ -12,7 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.brownbox.matchschedule.R.array.league
 import com.example.brownbox.matchschedule.api.ApiRepository
-import com.example.brownbox.matchschedule.detail.DetailActivity
+import com.example.brownbox.matchschedule.detail.DetailMatchActivity
 import com.example.brownbox.matchschedule.main.MainAdapter
 import com.example.brownbox.matchschedule.main.MainPresenter
 import com.example.brownbox.matchschedule.main.MainView
@@ -21,9 +21,6 @@ import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_match.*
-import org.jetbrains.anko.sdk27.coroutines.onItemSelectedListener
-import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 
@@ -43,8 +40,8 @@ class LastFragment : Fragment(), MainView {
         val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         match_spinner.adapter = spinnerAdapter
 
-        adapter = MainAdapter(ctx, events){
-            startActivity<DetailActivity>(
+        adapter = MainAdapter(requireContext(), events){
+            startActivity<DetailMatchActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
                 "idAway" to "${it.idAwayTeam}")

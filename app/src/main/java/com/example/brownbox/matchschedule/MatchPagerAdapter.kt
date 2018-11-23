@@ -5,13 +5,12 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.example.brownbox.matchschedule.favorite.FavoritesFragment
 
-class PagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
+class MatchPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
 
 
     private val pages = listOf(
         NextFragment(),
         LastFragment()
-//        FavoritesFragment()
     )
     override fun getItem(p0: Int): Fragment {
         return pages[p0] as Fragment
@@ -25,7 +24,6 @@ class PagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
         return when(position){
             0 -> "Next Match"
             else -> "Last Match"
-//            else -> "Favorites"
         }
     }
 

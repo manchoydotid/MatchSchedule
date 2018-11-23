@@ -26,12 +26,12 @@ import org.jetbrains.anko.support.v4.onRefresh
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DetailActivity : AppCompatActivity(), LeagueDetailView,
-    TeamDetailView {
+class DetailMatchActivity : AppCompatActivity(), LeagueDetailView,
+    TeamDetailMatchView {
 
     private lateinit var leagueDetailItem: LeagueDetailItem
     private lateinit var presenter: DetailPresenter
-    private lateinit var teamPresenter: TeamPresenter
+    private lateinit var teamDetailMatchPresenter: TeamDetailMatchPresenter
 
     private lateinit var eventId: String
     private var homeId: String = ""
@@ -57,14 +57,14 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView,
         val gson = Gson()
 
         presenter = DetailPresenter(this, request, gson)
-        teamPresenter = TeamPresenter(this, request, gson)
+        teamDetailMatchPresenter = TeamDetailMatchPresenter(this, request, gson)
 
         presenter.getDetailEvent(eventId)
-        teamPresenter.getDetailTeam(homeId, awayId)
+        teamDetailMatchPresenter.getDetailTeam(homeId, awayId)
 
         detail_swipeRefresh.onRefresh {
             presenter.getDetailEvent(eventId)
-            teamPresenter.getDetailTeam(homeId, awayId)
+            teamDetailMatchPresenter.getDetailTeam(homeId, awayId)
         }
     }
 

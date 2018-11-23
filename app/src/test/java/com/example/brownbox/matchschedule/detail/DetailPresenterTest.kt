@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`

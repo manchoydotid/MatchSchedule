@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.database
-import com.example.brownbox.matchschedule.detail.DetailActivity
-import kotlinx.android.synthetic.main.fragment_favorites.*
+import com.example.brownbox.matchschedule.detail.DetailMatchActivity
+import kotlinx.android.synthetic.main.fragment_favorites_match.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.ctx
@@ -27,7 +27,7 @@ class FavoritesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         adapter = FavoritesEventAdapter(ctx, favorites) {
-            startActivity<DetailActivity>(
+            startActivity<DetailMatchActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
                 "idAway" to "${it.idAwayTeam}"
@@ -61,7 +61,7 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        return inflater.inflate(R.layout.fragment_favorites_match, container, false)
     }
 
 

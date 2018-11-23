@@ -15,7 +15,7 @@ class MatchMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewpager_main.adapter = PagerAdapter(childFragmentManager)
+        viewpager_main.adapter = MatchPagerAdapter(childFragmentManager)
         tabs_main.setupWithViewPager(viewpager_main)
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.brownbox.matchschedule.MatchMainFragment
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.favorite.FavoritesFragment
+import com.example.brownbox.matchschedule.teams.TeamsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,10 +13,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.elevation = 0f
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.match -> {
+                    loadMatchFragment(savedInstanceState)
+                }
+                R.id.teams -> {
                     loadTeamsFragment(savedInstanceState)
                 }
                 R.id.favorites -> {
@@ -26,11 +31,20 @@ class MainActivity : AppCompatActivity() {
         }
         bottom_navigation.selectedItemId = R.id.match
     }
-    private fun loadTeamsFragment(savedInstanceState: Bundle?) {
+    private fun loadMatchFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, MatchMainFragment(), MatchMainFragment::class.java.simpleName)
+                .commit()
+        }
+    }
+
+    private fun loadTeamsFragment(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
                 .commit()
         }
     }

@@ -8,4 +8,8 @@
     <item name="cardview_main" type="id"/>
     <item name="match_cardview" type="id"/>
     <item name="time_event" type="id"/>
+    <item name="team_badge" type="id"/>
+    <item name="team_name" type="id"/>
+    <item name="team_cardview" type="id"/>
+
 </resources>

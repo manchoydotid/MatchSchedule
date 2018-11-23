@@ -5,8 +5,15 @@
             android:id="@+id/match"
             android:enabled="true"
             android:title="@string/match"
-            android:icon="@drawable/ic_teams"
+            android:icon="@drawable/ic_match"
             app:showAsAction="ifRoom"/>
+
+    <item
+            android:id="@+id/teams"
+            android:enabled="true"
+            android:icon="@drawable/ic_teams"
+            android:title="@string/teams"
+            app:showAsAction="ifRoom" />
 
     <item
             android:id="@+id/favorites"
