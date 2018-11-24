@@ -23,11 +23,10 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.elevation = 0f
 
-
-        detail_viewpager.adapter = TeamDetailPagerAdapter(supportFragmentManager)
-
         val intent = intent
         teamId = intent.getStringExtra("idTeam")
+
+        detail_viewpager.adapter = TeamDetailPagerAdapter(teamId, supportFragmentManager, 2)
 
         val request = ApiRepository()
         val gson = Gson()
@@ -50,7 +49,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
             data[0].intFormedYear,
             data[0].strStadium,
             data[0].strTeamBadge,
-            data[0].strDescription
+            data[0].strDescriptionEN
         )
 
         detail_team_name.text = data[0].strTeam

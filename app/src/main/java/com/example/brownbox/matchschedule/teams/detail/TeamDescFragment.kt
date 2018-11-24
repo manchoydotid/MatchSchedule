@@ -3,25 +3,39 @@ package com.example.brownbox.matchschedule.teams.detail
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.example.brownbox.matchschedule.R
+import com.example.brownbox.matchschedule.api.ApiRepository
+import com.example.brownbox.matchschedule.detail.TeamDetailItem
+import com.example.brownbox.matchschedule.teams.detail.TeamDetailPagerAdapter.Companion.KEY_TEAM
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_team_desc.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- *
- */
-class TeamDescFragment : Fragment() {
+class TeamDescFragment : Fragment(), TeamDetailView {
+
+
+    private lateinit var teamDetailItem: TeamDetailItem
+    private lateinit var presenter: TeamDetailPresenter
+    private var teamId: String =""
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val bindData = arguments
+        teamId = bindData?.getString(KEY_TEAM)?: "idTeam"
+        Log.e("id Team : ", " idTeam "+teamId)
+
+        val request = ApiRepository()
+        val gson = Gson()
+
+        presenter = TeamDetailPresenter(this, request, gson)
+        presenter.getDetailTeam(teamId)
+
 
     }
 
@@ -34,4 +48,23 @@ class TeamDescFragment : Fragment() {
     }
 
 
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun showTeamDetail(data: List<TeamDetailItem>) {
+        teamDetailItem = TeamDetailItem(
+            data[0].idTeam,
+            data[0].strTeam,
+            data[0].intFormedYear,
+            data[0].strStadium,
+            data[0].strTeamBadge,
+            data[0].strDescriptionEN
+        )
+
+        detail_team_desc.text = data[0].strDescriptionEN
+
+    }
 }

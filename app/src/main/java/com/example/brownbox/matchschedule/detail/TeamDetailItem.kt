@@ -5,6 +5,6 @@ data class TeamDetailItem(
     val strTeam: String? = null,
     val intFormedYear: String? = null,
     val strStadium: String? = null,
-    val strDescription: String? = null,
+    val strDescriptionEN: String? = null,
     val strTeamBadge: String? = null
 )
