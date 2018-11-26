@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.example.brownbox.matchschedule.teams.detail.desc.TeamDescFragment
+import com.example.brownbox.matchschedule.teams.detail.players.TeamPlayerFragment
 
 class TeamDetailPagerAdapter (private val idTeam: String, fm: FragmentManager, private var tabCount: Int)
     : FragmentPagerAdapter(fm){
@@ -42,7 +44,7 @@ class TeamDetailPagerAdapter (private val idTeam: String, fm: FragmentManager, p
         const val KEY_TEAM = "KEY_TEAM"
         const val KEY_TEAM_2 = "KEY_TEAM_2"
 
-        fun newInstance(id: String): TeamDescFragment{
+        fun newInstance(id: String): TeamDescFragment {
             val bindData = Bundle()
             bindData.putString(KEY_TEAM, id)
 
@@ -51,7 +53,7 @@ class TeamDetailPagerAdapter (private val idTeam: String, fm: FragmentManager, p
             return teamDescFragment
         }
 
-        fun newInstancePlayer(id: String): TeamPlayerFragment{
+        fun newInstancePlayer(id: String): TeamPlayerFragment {
             val bindData = Bundle()
             bindData.putString(KEY_TEAM_2, id)
 

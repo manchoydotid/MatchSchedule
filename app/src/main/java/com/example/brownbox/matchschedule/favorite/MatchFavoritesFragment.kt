@@ -10,23 +10,22 @@ import android.view.ViewGroup
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.database
 import com.example.brownbox.matchschedule.detail.DetailMatchActivity
-import kotlinx.android.synthetic.main.fragment_favorites_match.*
+import kotlinx.android.synthetic.main.fragment_match_favorites.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
 
-class FavoritesFragment : Fragment() {
+class MatchFavoritesFragment : Fragment() {
 
-    private var favorites: MutableList<Favorites> = mutableListOf()
+    private var favorites: MutableList<MatchFavorites> = mutableListOf()
     private lateinit var adapter: FavoritesEventAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = FavoritesEventAdapter(ctx, favorites) {
+        adapter = FavoritesEventAdapter(requireContext(), favorites) {
             startActivity<DetailMatchActivity>(
                 "idEvent" to "${it.idEvent}",
                 "idHome" to "${it.idHomeTeam}",
@@ -49,8 +48,8 @@ class FavoritesFragment : Fragment() {
     private fun showFavorites(){
         context?.database?.use{
             fav_swipeRefresh.isRefreshing = false
-            val result = select(Favorites.TABLE_FAVORITES)
-            val favorite = result.parseList(classParser<Favorites>())
+            val result = select(MatchFavorites.TABLE_FAVORITES)
+            val favorite = result.parseList(classParser<MatchFavorites>())
             favorites.addAll(favorite)
             adapter.notifyDataSetChanged()
         }
@@ -61,7 +60,7 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites_match, container, false)
+        return inflater.inflate(R.layout.fragment_match_favorites, container, false)
     }
 
 

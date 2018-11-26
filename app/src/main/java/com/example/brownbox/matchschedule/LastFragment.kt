@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import com.example.brownbox.matchschedule.R.array.league
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.detail.DetailMatchActivity
@@ -31,6 +32,7 @@ class LastFragment : Fragment(), MainView {
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
     private lateinit var leagueName: String
+    private lateinit var progressBar: ProgressBar
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,6 +49,7 @@ class LastFragment : Fragment(), MainView {
                 "idAway" to "${it.idAwayTeam}")
         }
 
+        progressBar = view!!.findViewById(R.id.pBar)
         listEvent = view!!.findViewById(R.id.rv_fragment)
         listEvent.layoutManager = LinearLayoutManager(requireContext())
         listEvent.adapter = adapter
@@ -83,15 +86,14 @@ class LastFragment : Fragment(), MainView {
     }
 
     override fun showLoading() {
-        pBar.visible()
+        progressBar.visible()
     }
 
     override fun hideLoading() {
-        pBar.invisible()
+        progressBar.invisible()
     }
 
     override fun showEventList(data: List<LeagueItem>) {
-        swipeRefresh.isRefreshing = false
         events.clear()
         events.addAll(data)
         adapter.notifyDataSetChanged()

@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule.teams.detail
+package com.example.brownbox.matchschedule.teams.detail.desc
 
 
 import android.os.Bundle
@@ -12,6 +12,8 @@ import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.detail.TeamDetailItem
 import com.example.brownbox.matchschedule.teams.detail.TeamDetailPagerAdapter.Companion.KEY_TEAM
+import com.example.brownbox.matchschedule.teams.detail.TeamDetailPresenter
+import com.example.brownbox.matchschedule.teams.detail.TeamDetailView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_team_desc.*
 
@@ -28,7 +30,6 @@ class TeamDescFragment : Fragment(), TeamDetailView {
 
         val bindData = arguments
         teamId = bindData?.getString(KEY_TEAM)?: "idTeam"
-        Log.e("id Team : ", " idTeam "+teamId)
 
         val request = ApiRepository()
         val gson = Gson()
@@ -58,9 +59,9 @@ class TeamDescFragment : Fragment(), TeamDetailView {
         teamDetailItem = TeamDetailItem(
             data[0].idTeam,
             data[0].strTeam,
+            data[0].strTeamBadge,
             data[0].intFormedYear,
             data[0].strStadium,
-            data[0].strTeamBadge,
             data[0].strDescriptionEN
         )
 

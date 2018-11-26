@@ -11,12 +11,15 @@
     <string name="midfield">Midfield</string>
     <string name="forward">Forward</string>
     <string name="subtitutes">Subtitutes</string>
-    <string name="favorites">Favorites</string>
+    <string name="matchFavorites">Favorites</string>
     <string name="home_badge">Home Badge</string>
     <string name="away_badge">Away Badge</string>
     <string name="teams">Teams</string>
     <string name="match">Match</string>
     <string name="team_badge">Team Badge</string>
+    <string name="weight_kg">Weight (Kg)</string>
+    <string name="height_m">Height (m)</string>
+    <string name="fanart">FanArt</string>
 
     <array name="league">
         <item>English Premier League</item>

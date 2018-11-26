@@ -3,14 +3,16 @@ package com.example.brownbox.matchschedule
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.example.brownbox.matchschedule.favorite.MatchFavoritesFragment
+import com.example.brownbox.matchschedule.favorite.TeamFavoritesFragment
 
-class MatchPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
-
+class FavoritePagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
 
     private val pages = listOf(
-        NextFragment(),
-        LastFragment()
+        MatchFavoritesFragment(),
+        TeamFavoritesFragment()
     )
+
     override fun getItem(p0: Int): Fragment {
         return pages[p0] as Fragment
     }
@@ -21,9 +23,8 @@ class MatchPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when(position){
-            0 -> "Next Match"
-            else -> "Last Match"
+            0 -> "Favorite Match"
+            else -> "Favorite Team"
         }
     }
-
 }

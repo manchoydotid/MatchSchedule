@@ -3,14 +3,14 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".teams.detail.TeamDescFragment"
-             android:padding="16dp">
+             tools:context=".teams.detail.desc.TeamDescFragment">
 
 
         <TextView
                 android:id="@+id/detail_team_desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:padding="16dp"/>
 
 
 </ScrollView>

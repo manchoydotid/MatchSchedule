@@ -2,9 +2,10 @@ package com.example.brownbox.matchschedule.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.brownbox.matchschedule.FavoriteMainFragment
 import com.example.brownbox.matchschedule.MatchMainFragment
 import com.example.brownbox.matchschedule.R
-import com.example.brownbox.matchschedule.favorite.FavoritesFragment
+import com.example.brownbox.matchschedule.favorite.MatchFavoritesFragment
 import com.example.brownbox.matchschedule.teams.TeamsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.main_container, FavoritesFragment(), FavoritesFragment::class.java.simpleName)
+                .replace(R.id.main_container, FavoriteMainFragment(), FavoriteMainFragment::class.java.simpleName)
                 .commit()
         }
     }

@@ -1,7 +1,7 @@
 package com.example.brownbox.matchschedule.favorite
 
 
-data class Favorites(
+data class MatchFavorites(
     val id: Long?,
     val idEvent: String?,
     val dateEvent: String?,

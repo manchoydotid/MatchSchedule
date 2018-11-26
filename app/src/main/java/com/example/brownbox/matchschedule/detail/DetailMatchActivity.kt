@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
-import com.example.brownbox.matchschedule.favorite.Favorites
+import com.example.brownbox.matchschedule.favorite.MatchFavorites
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.R.drawable.ic_add_to_favorites
 import com.example.brownbox.matchschedule.R.drawable.ic_added_to_favorites
@@ -70,10 +70,10 @@ class DetailMatchActivity : AppCompatActivity(), LeagueDetailView,
 
     private fun favoriteState(){
         database.use{
-            val result = select(Favorites.TABLE_FAVORITES)
-                .whereArgs("(${Favorites.ID_EVENT} = {id})",
+            val result = select(MatchFavorites.TABLE_FAVORITES)
+                .whereArgs("(${MatchFavorites.ID_EVENT} = {id})",
                     "id" to eventId)
-            val favorites = result.parseList(classParser<Favorites>())
+            val favorites = result.parseList(classParser<MatchFavorites>())
             if (!favorites.isEmpty()) isFavorite = true
         }
     }
@@ -183,16 +183,16 @@ class DetailMatchActivity : AppCompatActivity(), LeagueDetailView,
             try {
                 database.use {
                     insert(
-                        Favorites.TABLE_FAVORITES,
-                        Favorites.ID_EVENT to leagueDetailItem.idEvent,
-                        Favorites.DATE_EVENT to leagueDetailItem.dateEvent,
-                        Favorites.STR_HOME_TEAM to leagueDetailItem.strHomeTeam,
-                        Favorites.ID_HOME_TEAM to leagueDetailItem.idHomeTeam,
-                        Favorites.INT_HOME_SCORE to leagueDetailItem.intHomeScore,
+                        MatchFavorites.TABLE_FAVORITES,
+                        MatchFavorites.ID_EVENT to leagueDetailItem.idEvent,
+                        MatchFavorites.DATE_EVENT to leagueDetailItem.dateEvent,
+                        MatchFavorites.STR_HOME_TEAM to leagueDetailItem.strHomeTeam,
+                        MatchFavorites.ID_HOME_TEAM to leagueDetailItem.idHomeTeam,
+                        MatchFavorites.INT_HOME_SCORE to leagueDetailItem.intHomeScore,
 
-                        Favorites.STR_AWAY_TEAM to leagueDetailItem.strAwayTeam,
-                        Favorites.ID_AWAY_TEAM to leagueDetailItem.idAwayTeam,
-                        Favorites.INT_AWAY_SCORE to leagueDetailItem.intAwayScore
+                        MatchFavorites.STR_AWAY_TEAM to leagueDetailItem.strAwayTeam,
+                        MatchFavorites.ID_AWAY_TEAM to leagueDetailItem.idAwayTeam,
+                        MatchFavorites.INT_AWAY_SCORE to leagueDetailItem.intAwayScore
                     )
                 }
                 detail_swipeRefresh.snackbar("Added to favorites").show()
@@ -206,7 +206,7 @@ class DetailMatchActivity : AppCompatActivity(), LeagueDetailView,
         try{
             database.use {
                 delete(
-                    Favorites.TABLE_FAVORITES, "(${Favorites.ID_EVENT} = {id})",
+                    MatchFavorites.TABLE_FAVORITES, "(${MatchFavorites.ID_EVENT} = {id})",
                     "id" to eventId)
             }
             detail_swipeRefresh.snackbar("Removed to favorites").show()
