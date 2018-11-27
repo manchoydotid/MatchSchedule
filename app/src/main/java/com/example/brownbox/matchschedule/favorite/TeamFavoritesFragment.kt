@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.brownbox.matchschedule.R
-import com.example.brownbox.matchschedule.database
 import com.example.brownbox.matchschedule.teamDatabase
 import com.example.brownbox.matchschedule.teams.detail.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_team_favorites.*

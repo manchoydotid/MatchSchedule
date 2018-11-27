@@ -3,13 +3,11 @@ package com.example.brownbox.matchschedule.teams
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.view.*
+import android.widget.*
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.teams.detail.TeamDetailActivity
 import com.example.brownbox.matchschedule.api.ApiRepository
@@ -19,21 +17,24 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_teams.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 
 
 class TeamsFragment : Fragment(), TeamsView {
+
 
     private lateinit var listTeam: RecyclerView
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var presenter: TeamsPresenter
     private lateinit var adapter: TeamsAdapter
     private lateinit var leagueName: String
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var progressBar: ProgressBar
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
+        setHasOptionsMenu(true)
 
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
@@ -43,6 +44,9 @@ class TeamsFragment : Fragment(), TeamsView {
             context?.startActivity<TeamDetailActivity>(
             "idTeam" to "${it.idTeam}")
         }
+
+        progressBar = view!!.findViewById(R.id.teams_pBar)
+        swipeRefresh = view!!.findViewById(R.id.teams_swipeRefresh)
         listTeam = view!!.findViewById(R.id.teams_rv)
         listTeam.layoutManager = LinearLayoutManager(requireContext())
         listTeam.adapter = adapter
@@ -71,24 +75,50 @@ class TeamsFragment : Fragment(), TeamsView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_teams, container, false)
     }
 
     override fun showLoading() {
-        teams_pBar.visible()
+        progressBar.visible()
     }
 
     override fun hideLoading() {
-        teams_pBar.invisible()
+        progressBar.invisible()
+    }
+
+    override fun emptyState() {
+        progressBar.invisible()
+        listTeam.invisible()
+        team_empty_tv.visible()
     }
 
     override fun showTeamList(data: List<Team>) {
-        teams_swipeRefresh.isRefreshing = false
+        swipeRefresh.isRefreshing = false
         teams.clear()
         teams.addAll(data)
         adapter.notifyDataSetChanged()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.search_menu, menu)
+        val searchView = menu?.findItem(R.id.search_item)?.actionView as android.support.v7.widget.SearchView?
+        searchView?.queryHint = "Search team"
+
+        searchView?.setOnQueryTextListener(object : android.support.v7.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                presenter.getTeamSearch(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isEmpty()) {
+                    presenter.getTeamList(teams_spinner.selectedItem.toString().replace(" ", "%20"))
+                } else
+                    team_empty_tv.invisible()
+                return true
+            }
+        })
+    }
 
 }

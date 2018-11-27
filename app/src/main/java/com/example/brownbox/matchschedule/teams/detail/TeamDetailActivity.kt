@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.brownbox.matchschedule.R
-import com.example.brownbox.matchschedule.R.menu.detail_menu
+import com.example.brownbox.matchschedule.R.menu.fav_menu
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.detail.TeamDetailItem
 import com.example.brownbox.matchschedule.favorite.TeamFavorites
@@ -84,7 +84,7 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(detail_menu, menu)
+        menuInflater.inflate(fav_menu, menu)
         menuItem = menu
         setFavorite()
         return true

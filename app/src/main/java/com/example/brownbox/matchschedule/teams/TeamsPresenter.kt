@@ -13,18 +13,37 @@ class TeamsPresenter(private val view: TeamsView,
                      CoroutineContextProvider = CoroutineContextProvider())
 {
     fun getTeamList(league: String) {
-    view.showLoading()
+        view.showLoading()
 
-    GlobalScope.launch(context.main) {
-        val data = gson.fromJson(
-            apiRepository
-                .doRequest(TheSportDBApi.getTeams(league)).await(),
-            TeamResponse::class.java
-        )
-         view.showTeamList(data.teams)
-        view.hideLoading()
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(
+                apiRepository
+                    .doRequest(TheSportDBApi.getTeams(league)).await(),
+                TeamResponse::class.java
+            )
+            view.showTeamList(data.teams)
+            view.hideLoading()
+        }
+
     }
 
-}
+    fun getTeamSearch(keyword: String) {
+        view.showLoading()
+
+        GlobalScope.launch(context.main) {
+            val data = gson.fromJson(
+                apiRepository
+                    .doRequest(TheSportDBApi.getTeamSearch(keyword)).await(),
+                TeamResponse::class.java
+            )
+            try{
+                view.showTeamList(data.teams)
+            }catch (e:Exception){
+                view.emptyState()
+            }
+            view.hideLoading()
+        }
+
+    }
 
 }

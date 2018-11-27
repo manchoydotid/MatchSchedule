@@ -171,8 +171,7 @@ class DetailMatchActivity : AppCompatActivity(), LeagueDetailView,
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuInflater.inflate(R.menu.fav_menu, menu)
         menuItem = menu
         setFavorite()
         return true

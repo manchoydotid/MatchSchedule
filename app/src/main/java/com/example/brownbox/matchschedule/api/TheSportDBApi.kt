@@ -41,4 +41,14 @@ object TheSportDBApi {
                 "/lookupplayer.php?id=" + playerId
     }
 
+    fun getEventSearch(keyword: String?): String {
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
+                "/searchevents.php?e=" + keyword
+    }
+
+    fun getTeamSearch(keyword: String?): String {
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +
+                "/searchteams.php?t=" + keyword
+    }
+
 }

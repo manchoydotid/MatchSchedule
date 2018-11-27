@@ -2,6 +2,7 @@ package com.example.brownbox.matchschedule.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.example.brownbox.matchschedule.FavoriteMainFragment
 import com.example.brownbox.matchschedule.MatchMainFragment
 import com.example.brownbox.matchschedule.R
@@ -10,6 +11,8 @@ import com.example.brownbox.matchschedule.teams.TeamsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+//    private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,13 @@ class MainActivity : AppCompatActivity() {
         }
         bottom_navigation.selectedItemId = R.id.match
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.search_menu, menu)
+//        menuItem = menu
+//        return true
+//    }
+
     private fun loadMatchFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager
