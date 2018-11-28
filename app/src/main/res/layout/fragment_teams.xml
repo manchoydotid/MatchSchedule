@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".teams.TeamsFragment">
+              tools:context=".view.team.TeamsFragment">
 
     <Spinner
             android:id="@+id/teams_spinner"
@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Nothing to see here-yet" />
+                    android:text="@string/nothing_to_see_here" />
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/teams_rv"

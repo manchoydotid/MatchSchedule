@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".LastFragment">
+              tools:context=".view.main.LastFragment">
 
     <Spinner
             android:id="@+id/match_spinner"

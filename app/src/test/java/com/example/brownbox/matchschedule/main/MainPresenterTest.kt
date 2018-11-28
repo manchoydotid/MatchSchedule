@@ -1,10 +1,12 @@
 package com.example.brownbox.matchschedule.main
 
+import com.example.brownbox.matchschedule.view.main.MainPresenter
+import com.example.brownbox.matchschedule.view.main.MainView
 import com.example.brownbox.matchschedule.TestContextProvider
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
-import com.example.brownbox.matchschedule.model.LeagueItem
-import com.example.brownbox.matchschedule.model.LeagueItemResponse
+import com.example.brownbox.matchschedule.model.EventLeagueModel.LeagueItem
+import com.example.brownbox.matchschedule.model.EventLeagueModel.LeagueItemResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,7 +36,13 @@ class MainPresenterTest {
     @Before
     fun setUp(){
         MockitoAnnotations.initMocks(this)
-        mainPresenter = MainPresenter(view, apiRepository, gson, TestContextProvider())
+        mainPresenter =
+                MainPresenter(
+                    view,
+                    apiRepository,
+                    gson,
+                    TestContextProvider()
+                )
     }
 
 

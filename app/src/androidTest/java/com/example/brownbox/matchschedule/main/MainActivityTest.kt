@@ -12,8 +12,8 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.R.id.*
+import com.example.brownbox.matchschedule.view.main.MainActivity
 import org.hamcrest.CoreMatchers.allOf
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

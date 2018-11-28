@@ -17,7 +17,7 @@ import org.jetbrains.anko.cardview.v7.cardView
 class TeamFavoritesAdapter(private val favorite: List<TeamFavorites>,
                            private val listener: (TeamFavorites) -> Unit) :RecyclerView.Adapter<TeamFavoriteViewHolder>(){
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TeamFavoriteViewHolder {
-        return TeamFavoriteViewHolder(TeamFavoriteUI().createView(AnkoContext.Companion.create(p0.context, p0)))
+        return TeamFavoriteViewHolder(TeamFavoriteUI().createView(AnkoContext.create(p0.context, p0)))
 
     }
 

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".teams.detail.TeamDetailActivity">
+        tools:context=".view.teamDetail.TeamDetailActivity">
 
     <LinearLayout
             android:id="@+id/detail_team_header"

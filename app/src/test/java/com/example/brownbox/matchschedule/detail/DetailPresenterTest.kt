@@ -1,8 +1,12 @@
 package com.example.brownbox.matchschedule.detail
 
+import com.example.brownbox.matchschedule.view.matchDetail.DetailPresenter
+import com.example.brownbox.matchschedule.view.main.LeagueDetailView
 import com.example.brownbox.matchschedule.TestContextProvider
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
+import com.example.brownbox.matchschedule.model.DetailEventModel.LeagueDetailItem
+import com.example.brownbox.matchschedule.model.DetailEventModel.LeagueDetailItemResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,13 +37,20 @@ class DetailPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        detailPresenter = DetailPresenter(view, apiRepository, gson, TestContextProvider())
+        detailPresenter =
+                DetailPresenter(
+                    view,
+                    apiRepository,
+                    gson,
+                    TestContextProvider()
+                )
     }
 
     @Test
     fun getDetailEvent() {
         val league: MutableList<LeagueDetailItem> = mutableListOf()
-        val response = LeagueDetailItemResponse(league)
+        val response =
+            LeagueDetailItemResponse(league)
         val eventId = "576577"
 
         GlobalScope.launch {

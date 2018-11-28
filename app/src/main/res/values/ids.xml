@@ -18,5 +18,6 @@
     <item name="team_fav_cardview" type="id"/>
     <item name="team_fav_badge" type="id"/>
     <item name="team_fav_name" type="id"/>
+    <item name="add_calender" type="id"/>
 
 </resources>
