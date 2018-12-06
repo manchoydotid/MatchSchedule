@@ -1,9 +1,10 @@
-package com.example.brownbox.matchschedule.view.matchSearch
+package com.example.brownbox.matchschedule.presenter
 
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.api.TheSportDBApi
 import com.example.brownbox.matchschedule.model.MatchSearchItemResponse
 import com.example.brownbox.matchschedule.util.CoroutineContextProvider
+import com.example.brownbox.matchschedule.view.matchSearch.MatchSearchView
 import com.google.gson.Gson
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

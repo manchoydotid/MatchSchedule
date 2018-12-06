@@ -12,6 +12,7 @@ import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.model.TeamModel.Team
 import com.example.brownbox.matchschedule.adapter.TeamsAdapter
+import com.example.brownbox.matchschedule.presenter.TeamsPresenter
 import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.example.brownbox.matchschedule.view.teamDetail.TeamDetailActivity
@@ -48,10 +49,10 @@ class TeamsFragment : Fragment(), TeamsView {
                 "idTeam" to "${it.idTeam}"
             )
         }
-        emptyState = view!!.find(R.id.team_empty_tv)
-        progressBar = view!!.findViewById(R.id.teams_pBar)
-        swipeRefresh = view!!.findViewById(R.id.teams_swipeRefresh)
-        listTeam = view!!.findViewById(R.id.teams_rv)
+        emptyState = view?.find(R.id.team_empty_tv) as TextView
+        progressBar = view?.findViewById(R.id.teams_pBar) as ProgressBar
+        swipeRefresh = view?.findViewById(R.id.teams_swipeRefresh) as SwipeRefreshLayout
+        listTeam = view?.findViewById(R.id.teams_rv) as RecyclerView
         listTeam.layoutManager = LinearLayoutManager(requireContext())
         listTeam.adapter = adapter
 

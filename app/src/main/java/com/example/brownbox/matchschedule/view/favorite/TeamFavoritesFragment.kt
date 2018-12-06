@@ -12,7 +12,7 @@ import com.example.brownbox.matchschedule.view.teamDetail.TeamDetailActivity
 
 import com.example.brownbox.matchschedule.favorite.TeamFavorites
 import com.example.brownbox.matchschedule.favorite.TeamFavoritesAdapter
-import com.example.brownbox.matchschedule.teamDatabase
+import com.example.brownbox.matchschedule.db.teamDatabase
 import kotlinx.android.synthetic.main.fragment_team_favorites.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select

@@ -11,12 +11,14 @@ import com.example.brownbox.matchschedule.favorite.MatchFavorites
 import com.example.brownbox.matchschedule.R.drawable.ic_add_to_favorites
 import com.example.brownbox.matchschedule.R.drawable.ic_added_to_favorites
 import com.example.brownbox.matchschedule.api.ApiRepository
+import com.example.brownbox.matchschedule.db.database
 import com.example.brownbox.matchschedule.model.DetailEventModel.LeagueDetailItem
 import com.example.brownbox.matchschedule.model.DetailTeamModel.TeamDetailItem
+import com.example.brownbox.matchschedule.presenter.DetailPresenter
 import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.example.brownbox.matchschedule.view.main.LeagueDetailView
-import com.example.brownbox.matchschedule.view.teamDetail.TeamDetailMatchPresenter
+import com.example.brownbox.matchschedule.presenter.TeamDetailMatchPresenter
 import com.example.brownbox.matchschedule.view.teamDetail.TeamDetailMatchView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso

@@ -6,6 +6,7 @@ import android.view.MenuItem
 import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.model.DetailPlayerModel.PlayerDetailItem
+import com.example.brownbox.matchschedule.presenter.PlayerDetailPresenter
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_player_detail.*

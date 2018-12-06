@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule
+package com.example.brownbox.matchschedule.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -12,7 +12,8 @@ class MyDatabaseOpenHelper(ctx: Context)
         private var instance: MyDatabaseOpenHelper? = null
 
         @Synchronized
-        fun getInstance(ctx: Context) = instance?: MyDatabaseOpenHelper(ctx)
+        fun getInstance(ctx: Context) = instance
+            ?: MyDatabaseOpenHelper(ctx)
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

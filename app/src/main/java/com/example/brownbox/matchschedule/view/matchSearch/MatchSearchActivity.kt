@@ -10,6 +10,7 @@ import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.adapter.MainAdapter
 import com.example.brownbox.matchschedule.model.EventLeagueModel.LeagueItem
+import com.example.brownbox.matchschedule.presenter.MatchSearchPresenter
 import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.example.brownbox.matchschedule.view.matchDetail.DetailMatchActivity

@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.brownbox.matchschedule.R
-import com.example.brownbox.matchschedule.database
+import com.example.brownbox.matchschedule.db.database
 import com.example.brownbox.matchschedule.favorite.FavoritesEventAdapter
 import com.example.brownbox.matchschedule.favorite.MatchFavorites
 import com.example.brownbox.matchschedule.view.matchDetail.DetailMatchActivity

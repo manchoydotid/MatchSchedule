@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule
+package com.example.brownbox.matchschedule.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -13,7 +13,8 @@ class TeamDatabaseOpenHelper(ctx:Context):
         @Synchronized
         fun getInstance(ctx: Context): TeamDatabaseOpenHelper {
             if (instance == null) {
-                instance = TeamDatabaseOpenHelper(ctx.applicationContext)
+                instance =
+                        TeamDatabaseOpenHelper(ctx.applicationContext)
             }
             return instance as TeamDatabaseOpenHelper
         }

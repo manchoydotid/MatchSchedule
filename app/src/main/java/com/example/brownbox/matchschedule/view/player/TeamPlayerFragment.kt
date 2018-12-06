@@ -14,6 +14,7 @@ import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.model.TeamPlayerModel.TeamPlayerItem
 import com.example.brownbox.matchschedule.adapter.TeamDetailPagerAdapter.Companion.KEY_TEAM_2
 import com.example.brownbox.matchschedule.adapter.TeamPlayerAdapter
+import com.example.brownbox.matchschedule.presenter.TeamPlayerPresenter
 import com.example.brownbox.matchschedule.view.playerDetail.PlayerDetailActivity
 import com.google.gson.Gson
 import org.jetbrains.anko.startActivity
@@ -39,7 +40,7 @@ class TeamPlayerFragment : Fragment(), TeamPlayerView {
             )
         }
 
-        listPlayer = view!!.findViewById(R.id.detail_players_rv)
+        listPlayer = view?.findViewById(R.id.detail_players_rv) as RecyclerView
         listPlayer.layoutManager = LinearLayoutManager(requireContext())
         listPlayer.adapter = adapter
 

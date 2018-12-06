@@ -1,4 +1,4 @@
-package com.example.brownbox.matchschedule.view.matchDetail
+package com.example.brownbox.matchschedule.presenter
 
 import com.example.brownbox.matchschedule.view.main.LeagueDetailView
 import com.example.brownbox.matchschedule.api.ApiRepository

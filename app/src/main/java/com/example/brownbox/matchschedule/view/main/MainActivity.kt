@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-//    private var menuItem: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +32,6 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.selectedItemId = R.id.match
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.search_menu, menu)
-//        menuItem = menu
-//        return true
-//    }
 
     private fun loadMatchFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {

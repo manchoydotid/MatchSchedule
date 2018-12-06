@@ -15,6 +15,7 @@ import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.adapter.MainAdapter
 import com.example.brownbox.matchschedule.model.EventLeagueModel.LeagueItem
+import com.example.brownbox.matchschedule.presenter.MainPresenter
 import com.example.brownbox.matchschedule.util.invisible
 import com.example.brownbox.matchschedule.util.visible
 import com.example.brownbox.matchschedule.view.matchDetail.DetailMatchActivity
@@ -48,8 +49,8 @@ class NextFragment : Fragment(), MainView {
             )
         }
 
-        progressBar = view!!.findViewById(R.id.pBar)
-        listEvent = view!!.findViewById(R.id.rv_fragment)
+        progressBar = view?.findViewById(R.id.pBar) as ProgressBar
+        listEvent = view?.findViewById(R.id.rv_fragment) as RecyclerView
         listEvent.layoutManager = LinearLayoutManager(requireContext())
         listEvent.adapter = adapter
 

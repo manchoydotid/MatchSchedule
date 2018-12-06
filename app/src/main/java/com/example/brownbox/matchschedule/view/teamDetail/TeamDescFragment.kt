@@ -11,6 +11,7 @@ import com.example.brownbox.matchschedule.R
 import com.example.brownbox.matchschedule.api.ApiRepository
 import com.example.brownbox.matchschedule.model.DetailTeamModel.TeamDetailItem
 import com.example.brownbox.matchschedule.adapter.TeamDetailPagerAdapter.Companion.KEY_TEAM
+import com.example.brownbox.matchschedule.presenter.TeamDetailPresenter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_team_desc.*
 

@@ -1,6 +1,6 @@
 package com.example.brownbox.matchschedule.detail
 
-import com.example.brownbox.matchschedule.view.matchDetail.DetailPresenter
+import com.example.brownbox.matchschedule.presenter.DetailPresenter
 import com.example.brownbox.matchschedule.view.main.LeagueDetailView
 import com.example.brownbox.matchschedule.TestContextProvider
 import com.example.brownbox.matchschedule.api.ApiRepository

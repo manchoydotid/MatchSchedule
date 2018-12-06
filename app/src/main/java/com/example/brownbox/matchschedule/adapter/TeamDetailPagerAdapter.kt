@@ -10,10 +10,6 @@ import com.example.brownbox.matchschedule.view.player.TeamPlayerFragment
 class TeamDetailPagerAdapter (private val idTeam: String, fm: FragmentManager, private var tabCount: Int)
     : FragmentPagerAdapter(fm){
 
-//    private val pages = listOf(
-//        TeamDescFragment(),
-//        TeamPlayerFragment()
-//    )
     override fun getItem(p0: Int): Fragment {
         return when(p0){
             0 -> {

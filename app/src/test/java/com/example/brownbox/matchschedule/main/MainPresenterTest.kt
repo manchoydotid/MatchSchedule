@@ -1,6 +1,6 @@
 package com.example.brownbox.matchschedule.main
 
-import com.example.brownbox.matchschedule.view.main.MainPresenter
+import com.example.brownbox.matchschedule.presenter.MainPresenter
 import com.example.brownbox.matchschedule.view.main.MainView
 import com.example.brownbox.matchschedule.TestContextProvider
 import com.example.brownbox.matchschedule.api.ApiRepository
