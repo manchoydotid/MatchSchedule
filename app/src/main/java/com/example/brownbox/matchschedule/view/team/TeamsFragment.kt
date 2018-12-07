@@ -85,6 +85,7 @@ class TeamsFragment : Fragment(), TeamsView {
 
     override fun showLoading() {
         progressBar.visible()
+        emptyState.invisible()
     }
 
     override fun hideLoading() {
